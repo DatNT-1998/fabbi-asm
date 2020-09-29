@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/fabbi-asm/static/css/main.643a9fab.chunk.css",
+    "main.js": "/fabbi-asm/static/js/main.e3e1c638.chunk.js",
+    "main.js.map": "/fabbi-asm/static/js/main.e3e1c638.chunk.js.map",
+    "runtime-main.js": "/fabbi-asm/static/js/runtime-main.3fd6f9c7.js",
+    "runtime-main.js.map": "/fabbi-asm/static/js/runtime-main.3fd6f9c7.js.map",
+    "static/css/2.220ccb42.chunk.css": "/fabbi-asm/static/css/2.220ccb42.chunk.css",
+    "static/js/2.5dd7d361.chunk.js": "/fabbi-asm/static/js/2.5dd7d361.chunk.js",
+    "static/js/2.5dd7d361.chunk.js.map": "/fabbi-asm/static/js/2.5dd7d361.chunk.js.map",
+    "index.html": "/fabbi-asm/index.html",
+    "precache-manifest.8cc6903878813dbd2856ae990d3abe49.js": "/fabbi-asm/precache-manifest.8cc6903878813dbd2856ae990d3abe49.js",
+    "service-worker.js": "/fabbi-asm/service-worker.js",
+    "static/css/2.220ccb42.chunk.css.map": "/fabbi-asm/static/css/2.220ccb42.chunk.css.map",
+    "static/css/main.643a9fab.chunk.css.map": "/fabbi-asm/static/css/main.643a9fab.chunk.css.map",
+    "static/js/2.5dd7d361.chunk.js.LICENSE.txt": "/fabbi-asm/static/js/2.5dd7d361.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3fd6f9c7.js",
+    "static/css/2.220ccb42.chunk.css",
+    "static/js/2.5dd7d361.chunk.js",
+    "static/css/main.643a9fab.chunk.css",
+    "static/js/main.e3e1c638.chunk.js"
+  ]
+}
