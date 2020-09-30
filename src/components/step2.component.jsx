@@ -4,10 +4,12 @@ import dishes from '../data/dishes.json';
 
 const StepTwo = (props) => {
     const [form] = Form.useForm();
-
     const data = dishes.dishes;
-    let datafakeRestaurant = [];
+    console.log(props, 'props step 2');
+    const [restaurant, setRestaurant] = useState(props.location && props.location.state && props.location.state.restaurant ? props.location.state.restaurant : '');
 
+    let datafakeRestaurant = [];
+    let dataRealRestaurant = [];
     data.map(element => {
         for (let value of element.availableMeals) {
             if (props.location.state.meal === value) {
@@ -16,16 +18,31 @@ const StepTwo = (props) => {
         }
     })
 
-    const [restaurant, setRestaurant] = useState('');
+    dataRealRestaurant = datafakeRestaurant.map(item => item.restaurant);
+
+    dataRealRestaurant = dataRealRestaurant.filter(function (elem, pos) {
+        return dataRealRestaurant.indexOf(elem) === pos;
+    });
+
+
 
     const handleRestaurantChange = (value) => {
         setRestaurant(value);
     }
 
     const handleBackClick = () => {
-        props.history.push({
-            pathname: "/"
-        })
+        if (restaurant === '') {
+            alert('Please select a restaurant');
+        } else {
+            props.history.push({
+                pathname: "/",
+                state: {
+                    numberPeople: props.location.state.numberPeople,
+                    meal: props.location.state.meal,
+                }
+            })
+        }
+
     }
 
     const handleNextClick = () => {
@@ -44,10 +61,10 @@ const StepTwo = (props) => {
             layout="vertical"
         >
             <Form.Item label="Please select a Restaurant">
-                <Select onChange={handleRestaurantChange}>
+                <Select value={restaurant} onChange={handleRestaurantChange}>
                     {
-                        datafakeRestaurant.map((item, index) => (
-                            <Select.Option key={index} value={item.restaurant}>{item.restaurant}</Select.Option>
+                        dataRealRestaurant.map((item, index) => (
+                            <Select.Option key={index} value={item}>{item}</Select.Option>
                         ))
                     }
                 </Select>

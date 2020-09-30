@@ -4,16 +4,17 @@ import React from 'react';
 const StepFour = (props) => {
     const [form] = Form.useForm();
 
-    console.log(props, 'ddddddd')
     const { restaurant, numOfServing, meal, dish, numberPeople } = props.location.state;
 
     const handleBackClick = () => {
         props.history.push({
-            pathname: `/step3/${restaurant}`,
+            pathname: `/step3/${props.location.state.restaurant}`,
             state: {
-                meal: { meal },
-                restaurant: { restaurant },
-                numberPeople: { numberPeople }
+                meal: props.location.state.meal,
+                restaurant: props.location.state.restaurant,
+                numberPeople: props.location.state.numberPeople,
+                dish: props.location.state.dish,
+                numOfServing: props.location.state.numOfServing,
             }
         })
     }

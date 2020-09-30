@@ -5,7 +5,7 @@ import { Form, InputNumber, Select, Button } from 'antd'
 
 const StepOne = (props) => {
     const [form] = Form.useForm();
-
+    console.log('props', props)
     const meals = [
         {
             value: '1',
@@ -22,9 +22,9 @@ const StepOne = (props) => {
     ];
 
 
-    const [meal, setMeal] = useState('$')
-    const [numberPeople, setNumberPeople] = useState('')
 
+    const [numberPeople, setNumberPeople] = useState(props.location && props.location.state && props.location.state.numberPeople ? props.location.state.numberPeople : '')
+    const [meal, setMeal] = useState(props.location && props.location.state && props.location.state.meal ? props.location.state.meal : '')
     const handleMealChange = (value) => {
         setMeal(value)
     }
@@ -34,12 +34,16 @@ const StepOne = (props) => {
     }
 
     const handleClick = () => {
-        console.log(props);
-        props.history.push({
-            pathname: `/step2/${meal}`,
-            state: { numberPeople: numberPeople, meal: meal }
-        })
+        if (meal === '') {
+            alert('Please select a meal');
+        }
+        else {
+            props.history.push({
+                pathname: `/step2/${meal}`,
+                state: { numberPeople: numberPeople, meal: meal }
+            })
 
+        }
     }
 
     return (
@@ -49,7 +53,7 @@ const StepOne = (props) => {
 
         >
             <Form.Item label="Please select a meal">
-                <Select onChange={handleMealChange}>
+                <Select value={meal} onChange={handleMealChange}>
                     {
                         meals.map((meal, index) => (
                             <Select.Option key={index} value={meal.label}>{meal.label}</Select.Option>
@@ -58,7 +62,7 @@ const StepOne = (props) => {
                 </Select>
             </Form.Item>
             <Form.Item label="Please Enter Number of people">
-                <InputNumber value={numberPeople} defaultValue={1} max={10} min={1} onChange={handleNumberPeopleChange} />
+                <InputNumber value={numberPeople === '' ? setNumberPeople(1) : numberPeople} max={10} min={1} onChange={handleNumberPeopleChange} />
             </Form.Item>
             <Button type="primary" onClick={handleClick} >Next</Button>
         </Form>

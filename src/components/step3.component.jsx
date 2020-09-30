@@ -9,47 +9,53 @@ const StepThree = (props) => {
     let data = dishes.dishes;
     let dataDish = [];
 
+    console.log(props, 'props step 3')
+
+
     data.map(element => {
         if (element.restaurant === props.location.state.restaurant) {
             dataDish.push(element);
         }
     })
 
-    // console.log(dataDish, 'data Dish can co')
-
     const handleBackClick = () => {
         props.history.push({
             pathname: `/step2/${props.location.state.restaurant}`,
             state: {
-                meal: props.location.state.meal
+                meal: props.location.state.meal,
+                numberPeople: props.location.state.numberPeople,
+                restaurant: props.location.state.restaurant,
             }
         })
     }
 
     const handleNextClick = () => {
-        props.history.push({
-            pathname: `/step4/review`,
-            state: {
-                numberPeople: props.location.state.numberPeople,
-                meal: props.location.state.meal,
-                restaurant: props.location.state.restaurant,
-                dish: dish,
-                numOfServing: numOfServing
-            }
-        })
+        if (dish === '') {
+            alert('please select a dish');
+        } else {
+            props.history.push({
+                pathname: `/step4/review`,
+                state: {
+                    numberPeople: props.location.state.numberPeople,
+                    meal: props.location.state.meal,
+                    restaurant: props.location.state.restaurant,
+                    dish: dish,
+                    numOfServing: numOfServing
+                }
+            })
+        }
+
     }
 
-    const [dish, setDish] = useState('');
-    const [numOfServing, setNumOfServing] = useState('  ');
+    const [dish, setDish] = useState(props.location && props.location.state && props.location.state.dish ? props.location.state.dish : '');
+    const [numOfServing, setNumOfServing] = useState(props.location && props.location.state && props.location.state.numOfServing ? props.location.state.numOfServing : '');
 
 
     const handleDishChange = (value) => {
-        console.log(value, 'value dish')
         setDish(value);
     }
 
     const handleNumOfServeChange = (number) => {
-        console.log(number, 'number')
         setNumOfServing(number);
     }
     return (
@@ -58,7 +64,7 @@ const StepThree = (props) => {
             layout="vertical"
         >
             <Form.Item label="Please select a dish">
-                <Select onChange={handleDishChange}>
+                <Select value={dish} onChange={handleDishChange}>
                     {
                         dataDish.map(item => (
                             <Select.Option key={item.id} value={item.name} >{item.name}</Select.Option>
@@ -67,7 +73,7 @@ const StepThree = (props) => {
                 </Select>
             </Form.Item>
             <Form.Item label="Please enter no of servings">
-                <InputNumber value={numOfServing} defaultValue="1" max={10} min={0} onChange={handleNumOfServeChange} />
+                <InputNumber value={numOfServing === '' ? setNumOfServing(1) : numOfServing} max={10} min={0} onChange={handleNumOfServeChange} />
             </Form.Item>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button type="primary" onClick={handleBackClick}>Previous</Button>
