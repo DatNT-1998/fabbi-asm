@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dc05759ae875d4d07a738aceebb2c9db",
+    "revision": "f60ac0491a6c2bdf610de70210c86877",
     "url": "/fabbi-asm/index.html"
   },
   {
-    "revision": "eb7568bf11dd8a4818fd",
+    "revision": "739afae41b9df12ae166",
     "url": "/fabbi-asm/static/css/2.220ccb42.chunk.css"
   },
   {
-    "revision": "be89ce9231a6a8c81ad4",
+    "revision": "a1cf184e0828eaa878c4",
     "url": "/fabbi-asm/static/css/main.643a9fab.chunk.css"
   },
   {
-    "revision": "eb7568bf11dd8a4818fd",
-    "url": "/fabbi-asm/static/js/2.5dd7d361.chunk.js"
+    "revision": "739afae41b9df12ae166",
+    "url": "/fabbi-asm/static/js/2.03d2444a.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/fabbi-asm/static/js/2.5dd7d361.chunk.js.LICENSE.txt"
+    "url": "/fabbi-asm/static/js/2.03d2444a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "be89ce9231a6a8c81ad4",
-    "url": "/fabbi-asm/static/js/main.97b97eab.chunk.js"
+    "revision": "a1cf184e0828eaa878c4",
+    "url": "/fabbi-asm/static/js/main.158e6681.chunk.js"
   },
   {
     "revision": "6f8c76124e5594bca79c",
