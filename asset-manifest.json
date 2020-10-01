@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/fabbi-asm/static/css/main.643a9fab.chunk.css",
-    "main.js": "/fabbi-asm/static/js/main.7007c371.chunk.js",
-    "main.js.map": "/fabbi-asm/static/js/main.7007c371.chunk.js.map",
+    "main.css": "/fabbi-asm/static/css/main.0ca322e6.chunk.css",
+    "main.js": "/fabbi-asm/static/js/main.1830dcf5.chunk.js",
+    "main.js.map": "/fabbi-asm/static/js/main.1830dcf5.chunk.js.map",
     "runtime-main.js": "/fabbi-asm/static/js/runtime-main.3fd6f9c7.js",
     "runtime-main.js.map": "/fabbi-asm/static/js/runtime-main.3fd6f9c7.js.map",
     "static/css/2.220ccb42.chunk.css": "/fabbi-asm/static/css/2.220ccb42.chunk.css",
-    "static/js/2.03d2444a.chunk.js": "/fabbi-asm/static/js/2.03d2444a.chunk.js",
-    "static/js/2.03d2444a.chunk.js.map": "/fabbi-asm/static/js/2.03d2444a.chunk.js.map",
+    "static/js/2.df4e3c35.chunk.js": "/fabbi-asm/static/js/2.df4e3c35.chunk.js",
+    "static/js/2.df4e3c35.chunk.js.map": "/fabbi-asm/static/js/2.df4e3c35.chunk.js.map",
     "index.html": "/fabbi-asm/index.html",
-    "precache-manifest.3962c75f1ed242e2da6c3698f6b5abba.js": "/fabbi-asm/precache-manifest.3962c75f1ed242e2da6c3698f6b5abba.js",
+    "precache-manifest.0f9714d63ca5133f8a7dc10f94864449.js": "/fabbi-asm/precache-manifest.0f9714d63ca5133f8a7dc10f94864449.js",
     "service-worker.js": "/fabbi-asm/service-worker.js",
     "static/css/2.220ccb42.chunk.css.map": "/fabbi-asm/static/css/2.220ccb42.chunk.css.map",
-    "static/css/main.643a9fab.chunk.css.map": "/fabbi-asm/static/css/main.643a9fab.chunk.css.map",
-    "static/js/2.03d2444a.chunk.js.LICENSE.txt": "/fabbi-asm/static/js/2.03d2444a.chunk.js.LICENSE.txt"
+    "static/css/main.0ca322e6.chunk.css.map": "/fabbi-asm/static/css/main.0ca322e6.chunk.css.map",
+    "static/js/2.df4e3c35.chunk.js.LICENSE.txt": "/fabbi-asm/static/js/2.df4e3c35.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3fd6f9c7.js",
     "static/css/2.220ccb42.chunk.css",
-    "static/js/2.03d2444a.chunk.js",
-    "static/css/main.643a9fab.chunk.css",
-    "static/js/main.7007c371.chunk.js"
+    "static/js/2.df4e3c35.chunk.js",
+    "static/css/main.0ca322e6.chunk.css",
+    "static/js/main.1830dcf5.chunk.js"
   ]
 }
