@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Button } from "antd";
@@ -14,7 +14,7 @@ const MenuBar = (props) => {
   let typeStep4 = "";
   let location = useLocation();
 
-  useEffect(() => {}, [location]);
+  useEffect(() => { }, [location]);
   const { pathname = "" } = location || {};
   console.log(pathname, "pathnameeeee");
   const pathStep = pathname.split("/")[1];
