@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Select, Button, InputNumber, Space } from 'antd';
+import { Form, Select, Button, InputNumber, Space, Input } from 'antd';
 import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import dishes from '../data/dishes.json';
@@ -7,11 +7,15 @@ import dishes from '../data/dishes.json';
 let dataNormal = [];
 
 
-const StepThree = (props) => {
+const StepThreeTH = (props) => {
     console.log(props, 'prop step3');
     const [form] = Form.useForm();
     const [dish, setDish] = useState(props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes[0].title : '');
     const [numOfServing, setNumOfServing] = useState(props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes[0].numServe : '');
+
+    const [dataDishes, setDataDishes] = useState(props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes : []);
+
+    console.log(dataDishes, 'co hay k nhi');
 
     const handleDishChange = (value) => {
         setDish(value);
@@ -50,9 +54,12 @@ const StepThree = (props) => {
                 title: dish,
                 numServe: numOfServing
             })
+
+            console.log(dataNormal, 'data normal lllllllllllllll')
+
             checkDuplicateTitle();
 
-            console.log("datanormal lllll", dataSend)
+            console.log("dataSend lllll", dataSend)
 
             props.history.push({
                 pathname: `/step4/review`,
@@ -67,6 +74,7 @@ const StepThree = (props) => {
     }
 
     // kiểm tra trùng title, khi trùng title thì cộng số lượng của numServe cho cái đầu tiên
+
     let dataSend = [];
     const checkDuplicateTitle = () => {
         let arr = [];
@@ -76,6 +84,7 @@ const StepThree = (props) => {
                 arr[e.title] += e.numServe
             } else arr[e.title] = e.numServe
         })
+
         for (const key in arr) {
             dataSend.push({
                 title: key,
@@ -89,7 +98,8 @@ const StepThree = (props) => {
         <Form
             form={form}
             layout="vertical"
-            onValuesChange={(allValues) => {
+            onValuesChange={(_, allValues) => {
+                console.log(allValues, 'all Value Changes')
                 dataNormal = allValues.users;
             }
             }
@@ -158,7 +168,19 @@ const StepThree = (props) => {
                     );
                 }}
             </Form.List>
-            {/* <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+
+
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Button type="primary" onClick={handleBackClick}>Previous</Button>
+                <Button type="primary" onClick={handleNextClick}>Next</Button>
+            </div>
+        </Form >
+    );
+}
+
+export default StepThreeTH;
+
+/* <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Form.Item label="Please select a dish" style={{ flex: 0.95 }}>
                     <Select value={dish} onChange={handleDishChange}>
                         {
@@ -205,14 +227,4 @@ const StepThree = (props) => {
                         </div>
                     );
                 }}
-            </Form.List> */}
-
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button type="primary" onClick={handleBackClick}>Previous</Button>
-                <Button type="primary" onClick={handleNextClick}>Next</Button>
-            </div>
-        </Form >
-    );
-}
-
-export default StepThree;
+            </Form.List> */

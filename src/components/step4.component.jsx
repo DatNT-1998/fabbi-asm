@@ -4,7 +4,12 @@ import React from 'react';
 const StepFour = (props) => {
     const [form] = Form.useForm();
 
-    const { restaurant, numOfServing, meal, dish, numberPeople } = props.location.state;
+    const { restaurant, meal, dish, numberPeople } = props.location.state;
+
+    console.log('Mang cac dish duoc su dung', dish);
+
+
+    let numofServing = dish[0].numServe;
 
     const handleBackClick = () => {
         props.history.push({
@@ -13,8 +18,8 @@ const StepFour = (props) => {
                 meal: props.location.state.meal,
                 restaurant: props.location.state.restaurant,
                 numberPeople: props.location.state.numberPeople,
-                dish: props.location.state.dish,
-                numOfServing: props.location.state.numOfServing,
+                dishes: dish,
+
             }
         })
     }
@@ -31,13 +36,17 @@ const StepFour = (props) => {
                 <div> Meal: <span>{meal}</span> </div>
                 <div> No of People: <span>{numberPeople}</span> </div>
                 <div> Restaurant: <span>{restaurant}</span> </div>
-                <div> Dishes: <span> {dish} - {numOfServing} </span> </div>
+                <div className="dish-title" > <span>Dishes:</span> <ul className="review-dish"> {dish.map((item, index) => (
+                    <li key={index}> <span> {item.title} </span> - <span> {item.numServe} </span>  </li>
+                ))}
+                </ul>
+                </div>
             </Form>
             <div className="buttons">
                 <Button type="primary" onClick={handleBackClick}> Previous </Button>
                 <Button type="primary" onClick={handleSubmit}> Submit </Button>
             </div>
-        </div>
+        </div >
 
     )
 }

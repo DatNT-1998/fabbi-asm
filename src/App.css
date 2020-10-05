@@ -25,3 +25,16 @@ body {
 /* span {
   margin-left: 20px;
 } */
+
+.dish-title {
+  display: flex;
+}
+
+.review-dish {
+  border: 1px solid black;
+  text-decoration: none;
+  list-style: none;
+  width: 200px;
+  padding: 4px;
+  margin-left: 6px;
+}
