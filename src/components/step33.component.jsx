@@ -6,16 +6,15 @@ import dishes from '../data/dishes.json';
 
 let dataNormal = [];
 
-
 const StepThreeTH = (props) => {
     console.log(props, 'prop step3');
     const [form] = Form.useForm();
     const [dish, setDish] = useState(props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes[0].title : '');
     const [numOfServing, setNumOfServing] = useState(props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes[0].numServe : '');
 
-    const [dataDishes, setDataDishes] = useState(props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes : []);
+    // const [dataDishes, setDataDishes] = useState(props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes : []);
 
-    console.log(dataDishes, 'co hay k nhi');
+    // console.log(dataDishes, 'co hay k nhi');
 
     const handleDishChange = (value) => {
         setDish(value);
@@ -93,6 +92,27 @@ const StepThreeTH = (props) => {
         }
     }
 
+
+    const dataDishes = props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes : [{ title: '', numServe: 1 }];
+    const listItems = dataDishes.map((item, index) =>
+        <div key={index} style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Form.Item label="Please select a dish" style={{ flex: 0.95 }}>
+                <Select value={dish} onChange={handleDishChange}>
+                    {
+                        dataDish.map(item => (
+                            <Select.Option key={item.id} value={item.name}>{item.name}</Select.Option>
+                        ))
+                    }
+                </Select>
+            </Form.Item>
+            <Form.Item label="Please enter no of servings">
+                <InputNumber value={numOfServing === '' ? setNumOfServing(1) : numOfServing} max={10} min={0} onChange={handleNumOfServeChange} />
+            </Form.Item>
+        </div>
+    );
+
+
+
     return (
 
         <Form
@@ -104,20 +124,7 @@ const StepThreeTH = (props) => {
             }
             }
         >
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Form.Item label="Please select a dish" style={{ flex: 0.95 }}>
-                    <Select value={dish} onChange={handleDishChange}>
-                        {
-                            dataDish.map(item => (
-                                <Select.Option key={item.id} value={item.name} >{item.name}</Select.Option>
-                            ))
-                        }
-                    </Select>
-                </Form.Item>
-                <Form.Item label="Please enter no of servings">
-                    <InputNumber value={numOfServing === '' ? setNumOfServing(1) : numOfServing} max={10} min={0} onChange={handleNumOfServeChange} />
-                </Form.Item>
-            </div>
+            {listItems}
             <Form.List name="users">
                 {(fields, { add, remove }) => {
                     return (
