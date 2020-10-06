@@ -7,9 +7,7 @@ const StepFour = (props) => {
     const { restaurant, meal, dish, numberPeople } = props.location.state;
 
     console.log('Mang cac dish duoc su dung', dish);
-
-
-    let numofServing = dish[0].numServe;
+    console.log('location', props.location.state);
 
     const handleBackClick = () => {
         props.history.push({
