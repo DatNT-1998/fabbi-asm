@@ -32,7 +32,7 @@ const MenuBar = (props) => {
       typeStep1 = "primary";
   }
   return (
-    <div style={{ marginBottom: "30px" }}>
+    <div className="tab-bar" >
       <Button type={typeStep1}> Step 1 </Button>
       <Button type={typeStep2}> Step 2 </Button>
       <Button type={typeStep3}> Step 3 </Button>

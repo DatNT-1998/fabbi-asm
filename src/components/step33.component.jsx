@@ -7,8 +7,9 @@ import dishes from "../data/dishes.json";
 
 const { set_3_data = {} } = GLOBAL || {}
 
+let dataNormal = [];
 const StepThreeTH = (props) => {
-    let dataNormal = [];
+
     console.log(props, "prop step3");
     const [form] = Form.useForm();
     console.log("form: ", form);
@@ -51,8 +52,11 @@ const StepThreeTH = (props) => {
 
     const handleNextClick = () => {
         if (dish === "") {
+            debugger
+            dataNormal.every(function (element) { return !!element.numServe && !!element.title; });
             alert("please select a dish");
         } else {
+            debugger
             const data = finalDataSendandCheckDuplicateData();
             props.history.push({
                 pathname: `/step4/review`,
@@ -80,13 +84,15 @@ const StepThreeTH = (props) => {
     // };
 
     const finalDataSendandCheckDuplicateData = () => {
-        dataNormal = [{ title: dish, numServe: numOfServing }, ...dataNormal]
-        // const allData = [{ title: dish, numServe: numOfServing }, ...dataNormal]
+        // dataNormal = [{ title: dish, numServe: numOfServing }, ...dataNormal]
+        const allData = [{ title: dish, numServe: numOfServing }, ...dataNormal]
         let arr = [];
         let dataSend = [];
-        dataNormal.map((e) => {
-            debugger
-            if (arr[e.title]) {
+        allData.map((e) => {
+            if (e === undefined) {
+                return;
+            }
+            else if (arr[e.title]) {
                 arr[e.title] += e.numServe;
             } else arr[e.title] = e.numServe;
         });
@@ -156,6 +162,7 @@ const StepThreeTH = (props) => {
                 </Form.Item>
                 <Form.Item label="Please enter no of servings">
                     <InputNumber
+                        type="number"
                         defaultValue={numOfServing}
                         max={10}
                         min={0}
@@ -180,6 +187,8 @@ const StepThreeTH = (props) => {
                                             name={[field.name, "title"]}
                                             fieldKey={[field.fieldKey, "title"]}
                                             style={{ flex: "0.95", marginRight: "8px" }}
+                                            rules={[{ required: true, message: 'Please choose the dish!' }]}
+
                                         >
                                             <Select>
                                                 {dataDish.map((item) => (
@@ -195,8 +204,9 @@ const StepThreeTH = (props) => {
                                             label="Please enter no of servings"
                                             name={[field.name, "numServe"]}
                                             fieldKey={[field.fieldKey, "numServe"]}
+                                            rules={[{ required: true, message: 'Please select a number!' }]}
                                         >
-                                            <InputNumber max={10} min={0} />
+                                            <InputNumber type="number" max={10} min={0} />
                                         </Form.Item>
 
                                         <Form.Item>

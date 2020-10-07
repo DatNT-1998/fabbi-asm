@@ -37,3 +37,11 @@ body {
   padding: 4px;
   margin-left: 6px;
 }
+
+.tab-bar {
+  margin-bottom: 30px;
+}
+
+.tab-bar button {
+  cursor: default !important;
+}

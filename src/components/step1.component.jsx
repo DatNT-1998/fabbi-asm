@@ -51,7 +51,7 @@ const StepOne = (props) => {
 
   return (
     <Form form={form} layout="vertical">
-      <Form.Item label="Please select a meal">
+      <Form.Item label="Please select a meal" rules={[{ required: true, message: 'Please select a meal!' }]}>
         <Select value={meal} onChange={handleMealChange}>
           {meals.map((meal, index) => (
             <Select.Option key={index} value={meal.label}>
@@ -62,6 +62,7 @@ const StepOne = (props) => {
       </Form.Item>
       <Form.Item label="Please Enter Number of people">
         <InputNumber
+          type="number"
           value={numberPeople === "" ? setNumberPeople(1) : numberPeople}
           max={10}
           min={1}

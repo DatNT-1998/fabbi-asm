@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import { Prompt } from 'react-router'
 
 import StepOne from "./components/step1.component";
 import StepTwo from "./components/step2.component";
@@ -11,6 +12,14 @@ import "./App.css";
 import MenuBar from "./components/menubar.component";
 
 function App() {
+
+  // useEffect(() => {
+  //   if (shouldBlockNavigation) {
+  //     window.onbeforeunload = () => true
+  //   } else {
+  //     window.onbeforeunload = undefined
+  //   }
+  // }, [])
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
