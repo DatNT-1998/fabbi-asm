@@ -4,13 +4,11 @@ import './index.css';
 import 'antd/dist/antd.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Beforeunload, useBeforeunload } from 'react-beforeunload';
+// import { Beforeunload, useBeforeunload } from 'react-beforeunload';
 
 
 ReactDOM.render(
-  <Beforeunload onBeforeunload={() => "You will lose the data"}  >
-    <App />
-  </Beforeunload>
+  <App />
   ,
   document.getElementById('root')
 );

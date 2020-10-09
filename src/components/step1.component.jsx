@@ -4,7 +4,6 @@ import { Form, InputNumber, Select, Button } from "antd";
 
 const StepOne = (props) => {
   const [form] = Form.useForm();
-  console.log("props step 1", props);
   const meals = [
     {
       value: "1",
@@ -25,6 +24,8 @@ const StepOne = (props) => {
       ? props.location.state.numberPeople
       : ""
   );
+
+
   const [meal, setMeal] = useState(
     props.location && props.location.state && props.location.state.meal
       ? props.location.state.meal
@@ -38,9 +39,9 @@ const StepOne = (props) => {
     setNumberPeople(number);
   };
 
-  const handleClick = () => {
-    if (meal === "") {
-      alert("Please select a meal");
+  const handleNextClick = () => {
+    if (meal === "" || numberPeople === null) {
+      alert("Please select a meal and a number of people");
     } else {
       props.history.push({
         pathname: `/step2/${meal}`,
@@ -51,25 +52,25 @@ const StepOne = (props) => {
 
   return (
     <Form form={form} layout="vertical">
-      <Form.Item label="Please select a meal" rules={[{ required: true, message: 'Please select a meal!' }]}>
-        <Select value={meal} onChange={handleMealChange}>
-          {meals.map((meal, index) => (
-            <Select.Option key={index} value={meal.label}>
-              {meal.label}
+      <Form.Item label="Please select a meal" name="mealName" rules={[{ required: true, message: 'Please select a meal!' }]}>
+        <Select defaultValue={meal} onChange={handleMealChange}>
+          {meals.map((item, index) => (
+            <Select.Option key={index} value={item.label}>
+              {item.label}
             </Select.Option>
           ))}
         </Select>
       </Form.Item>
-      <Form.Item label="Please Enter Number of people">
+      <Form.Item label="Please Enter Number of people" name="numberofPeople" rules={[{ required: true, message: 'Please select a number of people!' }]} >
         <InputNumber
           type="number"
-          value={numberPeople === "" ? setNumberPeople(1) : numberPeople}
+          defaultValue={numberPeople === "" ? setNumberPeople(1) : numberPeople}
           max={10}
           min={1}
           onChange={handleNumberPeopleChange}
         />
       </Form.Item>
-      <Button type="primary" onClick={handleClick}>
+      <Button type="primary" onClick={handleNextClick} htmlType="submit" >
         Next
       </Button>
     </Form>

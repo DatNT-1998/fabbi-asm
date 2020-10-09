@@ -5,7 +5,6 @@ import dishes from "../data/dishes.json";
 const StepTwo = (props) => {
   const [form] = Form.useForm();
   const data = dishes.dishes;
-  console.log(props, "props step 2");
   const [restaurant, setRestaurant] = useState(
     props.location && props.location.state && props.location.state.restaurant
       ? props.location.state.restaurant
@@ -59,8 +58,8 @@ const StepTwo = (props) => {
 
   return (
     <Form form={form} layout="vertical">
-      <Form.Item label="Please select a Restaurant">
-        <Select value={restaurant} onChange={handleRestaurantChange}>
+      <Form.Item label="Please select a Restaurant" name="restaurantName" rules={[{ required: true, message: 'Please select a restaurant!' }]}>
+        <Select defaultValue={restaurant} onChange={handleRestaurantChange}>
           {dataRealRestaurant.map((item, index) => (
             <Select.Option key={index} value={item}>
               {item}
@@ -73,7 +72,7 @@ const StepTwo = (props) => {
         <Button type="primary" onClick={handleBackClick}>
           Previous
         </Button>
-        <Button type="primary" onClick={handleNextClick}>
+        <Button type="primary" onClick={handleNextClick} htmlType="submit">
           Next
         </Button>
       </div>

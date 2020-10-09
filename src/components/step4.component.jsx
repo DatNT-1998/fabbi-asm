@@ -6,9 +6,6 @@ const StepFour = (props) => {
 
     const { restaurant, meal, dish, numberPeople } = props.location.state;
 
-    console.log('Mang cac dish duoc su dung', dish);
-    console.log('location', props.location.state);
-
     const handleBackClick = () => {
         props.history.push({
             pathname: `/step3/${props.location.state.restaurant}`,
@@ -17,7 +14,6 @@ const StepFour = (props) => {
                 restaurant: props.location.state.restaurant,
                 numberPeople: props.location.state.numberPeople,
                 dishes: dish,
-
             }
         })
     }
