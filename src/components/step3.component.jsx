@@ -25,6 +25,8 @@ const StepThree = (props) => {
 
     let dish = props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes[0].title : "";
     let numOfServing = props.location && props.location.state && props.location.state.dishes ? props.location.state.dishes[0].numServe : 1;
+
+    //data dùng để render trong Select.Option
     let data = dishes.dishes;
     let dataDish = [];
 
@@ -35,6 +37,7 @@ const StepThree = (props) => {
     });
 
     const handleBackClick = () => {
+        dataNormal = [];
         props.history.push({
             pathname: `/step2/${props.location.state.restaurant}`,
             state: {
@@ -46,7 +49,6 @@ const StepThree = (props) => {
     };
 
     const handleNextClick = () => {
-
         const data = finalDataSendandCheckDuplicateData();
         let a = 0;
         for (let i = 0; i < data.length; i++) {
@@ -57,6 +59,7 @@ const StepThree = (props) => {
         } else if (a < props.location.state.numberPeople) {
             alert("Please select a disc number that matches your number of people")
         } else {
+
             props.history.push({
                 pathname: `/step4/review`,
                 state: {
@@ -70,9 +73,12 @@ const StepThree = (props) => {
     };
 
     // kiểm tra trùng title, khi trùng title thì cộng số lượng của numServe cho cái đầu tiên
+    console.log("dataNormal version 1", dataNormal)
 
     const finalDataSendandCheckDuplicateData = () => {
         // dataNormal = [{ title: dish, numServe: numOfServing }, ...dataNormal]
+
+        console.log("this is dataNormal", dataNormal);
         let allData = [{ title: dish, numServe: numOfServing }, ...dataNormal];
         let arr = [];
         let dataSend = [];
@@ -123,15 +129,18 @@ const StepThree = (props) => {
             form={form}
             layout="vertical"
             onValuesChange={(_, allValues) => {
+
                 // clear dataNormal = {}
                 dataNormal = [];
-                dataNormal = allValues.users;
+                if (typeof (allValues.users) !== 'undefined') {
+                    dataNormal = allValues.users;
+                }
             }}
         >
             <div
                 style={{ display: "flex", justifyContent: "space-between" }}
             >
-                <Form.Item label="Please select a dish" style={{ flex: 0.95 }} required >
+                <Form.Item label="Please select a dish" style={{ flex: 0.95 }} name="tendia" rules={[{ required: true, message: 'Please select a dish!' }]} >
                     <Select defaultValue={dish} onChange={handleDishChange}>
                         {dataDish.map((item) => (
                             <Select.Option key={item.id} value={item.name}>
@@ -140,7 +149,7 @@ const StepThree = (props) => {
                         ))}
                     </Select>
                 </Form.Item>
-                <Form.Item label="Please enter no of servings" required >
+                <Form.Item label="Please enter no of servings" name="soluong" rules={[{ required: true, message: 'Please select a number of serving!' }]} >
                     <InputNumber
                         type="number"
                         defaultValue={numOfServing}

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route } from "react-router-dom";
 // import { Prompt } from 'react-router'
 
 import StepOne from "./components/step1.component";
