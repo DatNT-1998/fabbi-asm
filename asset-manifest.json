@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/fabbi-asm/static/css/main.18d764d0.chunk.css",
-    "main.js": "/fabbi-asm/static/js/main.9f279917.chunk.js",
-    "main.js.map": "/fabbi-asm/static/js/main.9f279917.chunk.js.map",
+    "main.js": "/fabbi-asm/static/js/main.c69148d3.chunk.js",
+    "main.js.map": "/fabbi-asm/static/js/main.c69148d3.chunk.js.map",
     "runtime-main.js": "/fabbi-asm/static/js/runtime-main.3fd6f9c7.js",
     "runtime-main.js.map": "/fabbi-asm/static/js/runtime-main.3fd6f9c7.js.map",
     "static/css/2.220ccb42.chunk.css": "/fabbi-asm/static/css/2.220ccb42.chunk.css",
     "static/js/2.0e2831b6.chunk.js": "/fabbi-asm/static/js/2.0e2831b6.chunk.js",
     "static/js/2.0e2831b6.chunk.js.map": "/fabbi-asm/static/js/2.0e2831b6.chunk.js.map",
     "index.html": "/fabbi-asm/index.html",
-    "precache-manifest.9fb70c84b92c83eaec0fae2e9e6ca564.js": "/fabbi-asm/precache-manifest.9fb70c84b92c83eaec0fae2e9e6ca564.js",
+    "precache-manifest.f54a97d850afa0b2e7df6e53a434b0e8.js": "/fabbi-asm/precache-manifest.f54a97d850afa0b2e7df6e53a434b0e8.js",
     "service-worker.js": "/fabbi-asm/service-worker.js",
     "static/css/2.220ccb42.chunk.css.map": "/fabbi-asm/static/css/2.220ccb42.chunk.css.map",
     "static/css/main.18d764d0.chunk.css.map": "/fabbi-asm/static/css/main.18d764d0.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.220ccb42.chunk.css",
     "static/js/2.0e2831b6.chunk.js",
     "static/css/main.18d764d0.chunk.css",
-    "static/js/main.9f279917.chunk.js"
+    "static/js/main.c69148d3.chunk.js"
   ]
 }
