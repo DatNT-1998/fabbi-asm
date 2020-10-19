@@ -4,10 +4,6 @@ import { useLocation } from "react-router-dom";
 import { Button } from "antd";
 
 const MenuBar = (props) => {
-  //   const [typeStep1, setTypeStep1] = useState("");
-  //   const [typeStep2, setTypeStep2] = useState("");
-  //   const [typeStep3, setTypeStep3] = useState("");
-  //   const [typeStep4, setTypeStep4] = useState("");
   let typeStep1 = "";
   let typeStep2 = "";
   let typeStep3 = "";
@@ -16,7 +12,6 @@ const MenuBar = (props) => {
 
   useEffect(() => { }, [location]);
   const { pathname = "" } = location || {};
-  console.log(pathname, "pathnameeeee");
   const pathStep = pathname.split("/")[1];
   switch (pathStep) {
     case "step2":

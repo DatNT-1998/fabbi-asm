@@ -10,14 +10,18 @@ let dataNormal = [];
 
 const StepThree = (props) => {
     const [form] = Form.useForm();
-    const { getFieldValue, setFieldsValue } = form
+    const { getFieldValue, setFieldsValue } = form;
+
+    const onFinish = () => {
+        handleNextClick();
+    }
+
     const handleDishChange = (value) => {
         dish = value;
     };
     const handleNumOfServeChange = (number) => {
         numOfServing = number;
     };
-    console.log("Props location step3", props.location)
     const dataDishes =
         props.location && props.location.state && props.location.state.dishes
             ? props.location.state.dishes
@@ -73,12 +77,9 @@ const StepThree = (props) => {
     };
 
     // kiểm tra trùng title, khi trùng title thì cộng số lượng của numServe cho cái đầu tiên
-    console.log("dataNormal version 1", dataNormal)
 
     const finalDataSendandCheckDuplicateData = () => {
         // dataNormal = [{ title: dish, numServe: numOfServing }, ...dataNormal]
-
-        console.log("this is dataNormal", dataNormal);
         let allData = [{ title: dish, numServe: numOfServing }, ...dataNormal];
         let arr = [];
         let dataSend = [];
@@ -129,19 +130,27 @@ const StepThree = (props) => {
             form={form}
             layout="vertical"
             onValuesChange={(_, allValues) => {
-
+                console.log("allValues", allValues)
                 // clear dataNormal = {}
                 dataNormal = [];
                 if (typeof (allValues.users) !== 'undefined') {
-                    dataNormal = allValues.users;
+                    for (let i = 0; i < allValues.users.length; i++) {
+                        if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === allValues.tendia) {
+                            alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
+                        }
+                        else {
+                            dataNormal = allValues.users;
+                        }
+                    }
                 }
             }}
+            onFinish={onFinish}
         >
             <div
                 style={{ display: "flex", justifyContent: "space-between" }}
             >
-                <Form.Item label="Please select a dish" style={{ flex: 0.95 }} name="tendia" rules={[{ required: true, message: 'Please select a dish!' }]} >
-                    <Select defaultValue={dish} onChange={handleDishChange}>
+                <Form.Item initialValue={dish} label="Please select a dish" style={{ flex: 0.95 }} name="tendia" rules={[{ required: true, message: 'Please select a dish!' }]} >
+                    <Select onChange={handleDishChange}>
                         {dataDish.map((item) => (
                             <Select.Option key={item.id} value={item.name}>
                                 {item.name}
@@ -149,10 +158,9 @@ const StepThree = (props) => {
                         ))}
                     </Select>
                 </Form.Item>
-                <Form.Item label="Please enter no of servings" name="soluong" rules={[{ required: true, message: 'Please select a number of serving!' }]} >
+                <Form.Item initialValue={numOfServing} label="Please enter no of servings" name="soluong" rules={[{ required: true, message: 'Please select a number of serving!' }]} >
                     <InputNumber
                         type="number"
-                        defaultValue={numOfServing}
                         max={10}
                         min={1}
                         onChange={handleNumOfServeChange}
@@ -194,6 +202,7 @@ const StepThree = (props) => {
                                             name={[field.name, "numServe"]}
                                             fieldKey={[field.fieldKey, "numServe"]}
                                             rules={[{ required: true, message: 'Please select a number!' }]}
+                                            initialValue={1}
                                         >
                                             <InputNumber type="number" max={10} min={1} />
                                         </Form.Item>
@@ -225,7 +234,7 @@ const StepThree = (props) => {
                 <Button type="primary" onClick={handleBackClick}>
                     Previous
                 </Button>
-                <Button type="primary" onClick={handleNextClick} htmlType="submit">
+                <Button type="primary" htmlType="submit">
                     Next
                 </Button>
             </div>
