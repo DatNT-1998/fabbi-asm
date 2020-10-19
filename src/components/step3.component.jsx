@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Select, Button, InputNumber, Space } from "antd";
 import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 // import { GLOBAL } from '../constants'
@@ -15,6 +15,8 @@ const StepThree = (props) => {
     const onFinish = () => {
         handleNextClick();
     }
+
+    const [checkTrung, setCheckTrung] = useState(false);
 
     const handleDishChange = (value) => {
         dish = value;
@@ -130,16 +132,20 @@ const StepThree = (props) => {
             form={form}
             layout="vertical"
             onValuesChange={(_, allValues) => {
+                debugger
                 console.log("allValues", allValues)
                 // clear dataNormal = {}
+
                 dataNormal = [];
                 if (typeof (allValues.users) !== 'undefined') {
                     for (let i = 0; i < allValues.users.length; i++) {
                         if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === allValues.tendia) {
                             alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
+                            allValues.users[i].title = ''
                         }
                         else {
                             dataNormal = allValues.users;
+                            console.log("dataNormal", dataNormal)
                         }
                     }
                 }
