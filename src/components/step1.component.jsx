@@ -23,13 +23,21 @@ const StepOne = (props) => {
       label: "dinner",
     },
   ];
+  const checkPrice = (rule, value) => {
+    debugger
+    if (value > 0 && value <= 10) {
+      return Promise.resolve();
+    }
+
+    return Promise.reject('Price must be greater than zero!');
+  };
+
 
   const [numberPeople, setNumberPeople] = useState(
     props.location && props.location.state && props.location.state.numberPeople
       ? props.location.state.numberPeople
       : ""
   );
-
 
   const [meal, setMeal] = useState(
     props.location && props.location.state && props.location.state.meal
@@ -41,6 +49,7 @@ const StepOne = (props) => {
   };
 
   const handleNumberPeopleChange = (number) => {
+
     setNumberPeople(number);
   };
 
@@ -66,7 +75,23 @@ const StepOne = (props) => {
           ))}
         </Select>
       </Form.Item>
-      <Form.Item initialValue={numberPeople === "" ? setNumberPeople(1) : numberPeople} label="Please Enter Number of people" name="numberofPeople" rules={[{ required: true, message: 'Please select a number of people!' }]} >
+      <Form.Item
+        initialValue={numberPeople === "" ? setNumberPeople(1) : numberPeople}
+        label="Please Enter Number of people" name="numberofPeople"
+        rules={[
+          {
+            required: true,
+            message: 'Please select a number of people!',
+          },
+          () => ({
+            validator(_, value) {
+              if (value > 0 && value <= 10) {
+                return Promise.resolve();
+              }
+              return Promise.reject('The number of people must not be greater than 10!');
+            },
+          }),
+        ]}>
         <InputNumber
           type="number"
           max={10}

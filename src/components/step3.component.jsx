@@ -16,8 +16,6 @@ const StepThree = (props) => {
         handleNextClick();
     }
 
-    const [checkTrung, setCheckTrung] = useState(false);
-
     const handleDishChange = (value) => {
         dish = value;
     };
@@ -132,22 +130,30 @@ const StepThree = (props) => {
             form={form}
             layout="vertical"
             onValuesChange={(_, allValues) => {
-                debugger
                 console.log("allValues", allValues)
                 // clear dataNormal = {}
 
                 dataNormal = [];
                 if (typeof (allValues.users) !== 'undefined') {
                     for (let i = 0; i < allValues.users.length; i++) {
-                        if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === allValues.tendia) {
-                            alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
-                            allValues.users[i].title = ''
-                        }
-                        else {
-                            dataNormal = allValues.users;
-                            console.log("dataNormal", dataNormal)
+                        for (let j = 1; j < allValues.users.length; j++) {
+                            if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === allValues.tendia) {
+                                alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
+                                allValues.users[i].title = ''
+                            }
+                            else if (
+                                allValues.users[i] && allValues.users[i].title && allValues.users[j] && allValues.users[j].title && allValues.users[i].title === allValues.users[j].title
+                            ) {
+                                alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
+                                allValues.users[j].title = ''
+                            }
+                            else {
+                                dataNormal = allValues.users;
+                                console.log("dataNormal", dataNormal)
+                            }
                         }
                     }
+
                 }
             }}
             onFinish={onFinish}
@@ -164,7 +170,23 @@ const StepThree = (props) => {
                         ))}
                     </Select>
                 </Form.Item>
-                <Form.Item initialValue={numOfServing} label="Please enter no of servings" name="soluong" rules={[{ required: true, message: 'Please select a number of serving!' }]} >
+                <Form.Item
+                    initialValue={numOfServing}
+                    label="Please enter no of servings"
+                    name="soluong"
+                    rules={[{
+                        required: true, message: 'Please select a number of serving!'
+                    },
+                    () => ({
+                        validator(_, value) {
+                            if (value > 0 && value <= 10) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject('Cannot be greater than 10!');
+                        },
+                    })
+                    ]}
+                >
                     <InputNumber
                         type="number"
                         max={10}
@@ -207,7 +229,14 @@ const StepThree = (props) => {
                                             label="Please enter no of servings"
                                             name={[field.name, "numServe"]}
                                             fieldKey={[field.fieldKey, "numServe"]}
-                                            rules={[{ required: true, message: 'Please select a number!' }]}
+                                            rules={[{ required: true, message: 'Please select a number!' }, () => ({
+                                                validator(_, value) {
+                                                    if (value > 0 && value <= 10) {
+                                                        return Promise.resolve();
+                                                    }
+                                                    return Promise.reject('Cannot be greater than 10');
+                                                },
+                                            })]}
                                             initialValue={1}
                                         >
                                             <InputNumber type="number" max={10} min={1} />
