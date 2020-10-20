@@ -10,7 +10,6 @@ let dataNormal = [];
 
 const StepThree = (props) => {
     const [form] = Form.useForm();
-    const { getFieldValue, setFieldsValue } = form;
 
     const onFinish = () => {
         handleNextClick();
@@ -38,6 +37,7 @@ const StepThree = (props) => {
         if (element.restaurant === props.location.state.restaurant) {
             dataDish.push(element);
         }
+        return element;
     });
 
     const handleBackClick = () => {
@@ -86,11 +86,13 @@ const StepThree = (props) => {
 
         allData.map((e) => {
             if (e === undefined) {
-                return;
+                return false;
             }
             else if (arr[e.title]) {
                 arr[e.title] += e.numServe;
             } else arr[e.title] = e.numServe;
+
+            return e;
         });
 
         for (const key in arr) {
@@ -112,26 +114,31 @@ const StepThree = (props) => {
         return allData;
     }
 
+
+
     useEffect(() => {
+        const { getFieldValue, setFieldsValue } = form;
+
+        function test(data = {}) {
+            const { users = [] } = getFieldValue()
+            const userAdd = [
+                ...users,
+            ]
+            userAdd.push(data)
+            setFieldsValue({
+                users: userAdd
+            })
+        }
+
         for (let index = 1; index < dataDishes.length; index++) {
             test({
                 title: dataDishes[index].title,
                 numServe: dataDishes[index].numServe,
             })
         }
-
     }, [props.location, dataDishes])
 
-    function test(data = {}) {
-        const { users = [] } = getFieldValue()
-        const userAdd = [
-            ...users,
-        ]
-        userAdd.push(data)
-        setFieldsValue({
-            users: userAdd
-        })
-    }
+
 
     return (
         <Form

@@ -17,12 +17,14 @@ const StepTwo = (props) => {
 
   let datafakeRestaurant = [];
   let dataRealRestaurant = [];
+
   data.map((element) => {
     for (let value of element.availableMeals) {
       if (props.location.state.meal === value) {
         datafakeRestaurant.push(element);
       }
     }
+    return element;
   });
 
   dataRealRestaurant = datafakeRestaurant.map((item) => item.restaurant);
