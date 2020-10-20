@@ -7,6 +7,7 @@ import dishes from "../data/dishes.json";
 
 // const { set_3_data = {} } = GLOBAL || {}
 let dataNormal = [];
+let dataNormalCheck = [];
 
 const StepThree = (props) => {
     const [form] = Form.useForm();
@@ -100,9 +101,17 @@ const StepThree = (props) => {
             });
         }
 
+        // for (let i = 0; i < allData.length; i++) {
+        //     for (let j = 0; j < allData.length; j++) {
+        //         if (allData[i].title === allData[j].title) {
+        //             alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
+        //             allData[j].title = ''
+        //         }
+        //     }
+        // }
+
         return dataSend;
     }
-
 
     useEffect(() => {
         for (let index = 1; index < dataDishes.length; index++) {
@@ -134,27 +143,31 @@ const StepThree = (props) => {
                 // clear dataNormal = {}
 
                 dataNormal = [];
+                dataNormalCheck = [];
                 if (typeof (allValues.users) !== 'undefined') {
                     for (let i = 0; i < allValues.users.length; i++) {
-                        for (let j = 1; j < allValues.users.length; j++) {
-                            if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === allValues.tendia) {
-                                alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
-                                allValues.users[i].title = ''
+                        if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === allValues.tendia) {
+                            alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac");
+                            allValues.users[i].title = '';
+                        }
+                        else {
+                            for (let j = i + 1; j <= allValues.users.length; j++) {
+                                if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === '') {
+                                    alert('Vui long chon mon');
+                                    return
+                                }
+                                if (allValues.users[i] && allValues.users[i].title && allValues.users[j] && allValues.users[j].title && allValues.users[i].title === allValues.users[j].title) {
+
+                                    alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac");
+                                    allValues.users[j].title = '';
+                                }
                             }
-                            else if (
-                                allValues.users[i] && allValues.users[i].title && allValues.users[j] && allValues.users[j].title && allValues.users[i].title === allValues.users[j].title
-                            ) {
-                                alert("khong duoc chon 2 mon trung nhau. Vui long chon mon khac")
-                                allValues.users[j].title = ''
-                            }
-                            else {
-                                dataNormal = allValues.users;
-                                console.log("dataNormal", dataNormal)
-                            }
+                            dataNormal = allValues.users;
+                            console.log("dataNormal", dataNormal);
                         }
                     }
-
                 }
+
             }}
             onFinish={onFinish}
         >
