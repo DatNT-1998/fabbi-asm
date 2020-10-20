@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fabbi-asm/precache-manifest.87d8c9e1ad6f74bd18559d7872263382.js"
+  "/fabbi-asm/precache-manifest.41291ba55f8a95686478c90155177850.js"
 );
 
 self.addEventListener('message', (event) => {
