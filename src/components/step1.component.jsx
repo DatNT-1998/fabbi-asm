@@ -23,14 +23,14 @@ const StepOne = (props) => {
       label: "dinner",
     },
   ];
-  const checkPrice = (rule, value) => {
-    debugger
-    if (value > 0 && value <= 10) {
-      return Promise.resolve();
-    }
+  // const checkPrice = (rule, value) => {
+  //   debugger
+  //   if (value > 0 && value <= 10) {
+  //     return Promise.resolve();
+  //   }
 
-    return Promise.reject('Price must be greater than zero!');
-  };
+  //   return Promise.reject('Price must be greater than zero!');
+  // };
 
 
   const [numberPeople, setNumberPeople] = useState(

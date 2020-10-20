@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Form, Select, Button, InputNumber, Space } from "antd";
 import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 // import { GLOBAL } from '../constants'
@@ -7,7 +7,6 @@ import dishes from "../data/dishes.json";
 
 // const { set_3_data = {} } = GLOBAL || {}
 let dataNormal = [];
-let dataNormalCheck = [];
 
 const StepThree = (props) => {
     const [form] = Form.useForm();
@@ -110,7 +109,7 @@ const StepThree = (props) => {
         //     }
         // }
 
-        return dataSend;
+        return allData;
     }
 
     useEffect(() => {
@@ -139,11 +138,9 @@ const StepThree = (props) => {
             form={form}
             layout="vertical"
             onValuesChange={(_, allValues) => {
-                console.log("allValues", allValues)
                 // clear dataNormal = {}
 
                 dataNormal = [];
-                dataNormalCheck = [];
                 if (typeof (allValues.users) !== 'undefined') {
                     for (let i = 0; i < allValues.users.length; i++) {
                         if (allValues.users[i] && allValues.users[i].title && allValues.users[i].title === allValues.tendia) {
@@ -163,7 +160,6 @@ const StepThree = (props) => {
                                 }
                             }
                             dataNormal = allValues.users;
-                            console.log("dataNormal", dataNormal);
                         }
                     }
                 }
